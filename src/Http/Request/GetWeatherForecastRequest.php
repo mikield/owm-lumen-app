@@ -13,7 +13,7 @@ class GetWeatherForecastRequest implements ApplicationHttpRequest
     use Validation;
 
     public int $days;
-    public string $locationQuery;
+    public string $city;
 
     /**
      * GetWeatherForecastRequest constructor.
@@ -24,14 +24,14 @@ class GetWeatherForecastRequest implements ApplicationHttpRequest
     {
         $this->validate($request, [
             "days" => "required",
-            "location_query" => ["required", Rule::in(["London", "Washington", "NewYork"])]
+            "city" => ["required", Rule::in(["London", "Washington", "NewYork"])]
         ]);
 
-        if ($request->input("location_query") == "NewYork") {
-            $request->merge(["location_query" => "New York"]);
+        if ($request->input("city") == "NewYork") {
+            $request->merge(["city" => "New York"]);
         }
 
         $this->days = $request->input("days");
-        $this->locationQuery = $request->input("location_query");
+        $this->city = $request->input("city");
     }
 }
