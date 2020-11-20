@@ -24,8 +24,12 @@ class GetWeatherForecastRequest implements ApplicationHttpRequest
     {
         $this->validate($request, [
             "days" => "required",
-            "location_query" => ["required", Rule::in(["London,us"])]
+            "location_query" => ["required", Rule::in(["London", "Washington", "NewYork"])]
         ]);
+
+        if ($request->input("location_query") == "NewYork") {
+            $request->merge(["location_query" => "New York"]);
+        }
 
         $this->days = $request->input("days");
         $this->locationQuery = $request->input("location_query");
