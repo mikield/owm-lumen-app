@@ -64,6 +64,9 @@ $app->configure('app');
 |
 */
 
+$app->middleware([
+    WeatherApp\Http\Middleware\CorsHeader::class
+]);
 
 $app->routeMiddleware([
     "throttle" => WeatherApp\Http\Middleware\ThrottleRequests::class,

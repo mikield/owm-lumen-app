@@ -14,6 +14,6 @@ $app->router->group(["middleware" => "throttle:60,1", "prefix" => "api/v1"], fun
         OpenWeatherMapService $openWeatherMapService
     ): WeatherForecastResponse {
         $forecast = $openWeatherMapService->getWeatherForecast($request->city, $request->days);
-        return new WeatherForecastResponse($forecast);
+        return new WeatherForecastResponse($forecast, $request);
     });
 });

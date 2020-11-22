@@ -23,7 +23,7 @@ class GetWeatherForecastRequest implements ApplicationHttpRequest
     public function __construct(Request $request)
     {
         $this->validate($request, [
-            "days" => "required",
+            "days" => "required|min:1|max:5",
             "city" => ["required", Rule::in(["London", "Washington", "NewYork"])]
         ]);
 

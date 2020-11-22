@@ -34,7 +34,7 @@ class OpenWeatherMapService implements WeatherServiceContract
      */
     public function getWeatherForecast($query, int $days): WeatherForecast
     {
-        if ($days < 1 || $days > 16) {
+        if ($days < 1 || $days > 5) {
             throw new RuntimeException("Days range is not valid");
         }
         try {
